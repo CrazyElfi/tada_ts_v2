@@ -1,0 +1,17 @@
+{
+  "message": "hello i18n !!",
+  "yourName": "Your name",
+  "typeYourName": "Type your name",
+  "typeYourMsg": "Type your message",
+  "typeRoomName": "Type new room name",
+  "errSizeName": "Максимальный размер имени {countSymbols}",
+  "room": "Room",
+  "lastMsg": "Last message",
+  "enter": "Enter",
+  "emptyList": "Rooms list empty",
+  "send": "Send",
+  "errSizeMsg": "Сообщение должно быть меньше {countSymbols} знаков",
+  "newChat": "new chat",
+  "errSizeRoomName": "Максимальный размер имени комнаты {countSymbols}",
+  "firstRoomMsg": "User \"{nameUser}\" created \"{nameRoom}\" room"
+}

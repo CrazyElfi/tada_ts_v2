@@ -3,17 +3,22 @@
    <c-add-new-chat />
 
    <v-row  class="d-flex justify-space-between align-center mb-2">
-     <v-col cols="4">Your name</v-col>
+     <v-col cols="4">
+       {{$t('yourName')}}
+     </v-col>
      <v-col cols="8">
        <!--      v-model="$v.username.$model"-->
        <input
            v-model="username"
            class="input pa-1"
            type="text"
-           placeholder="Type your name"
+           :placeholder='$t("typeYourName")'
        />
        <!--      <div class="error&#45;&#45;text" v-if="!$v.username.maxLength">-->
-       <!--        Максимальный размер имени {{ validationRules.maxUsernameLength  }}-->
+      <!--       {{ $t('errSizeName',{
+                      countSymbols: validationRules.maxUsernameLength,
+                    }
+      '}}-->
        <!--      </div>-->
      </v-col>
    </v-row>
@@ -23,11 +28,11 @@
          <!--      <room-card :room="item" @open="openChat(item.name)"/>-->
          <v-card>
            <v-card-title class="subtitle-1">
-             Room: {{ item.name }}
+             {{$t("room")}}: {{ item.name }}
            </v-card-title>
 
            <v-card-subtitle class="pb-0">
-             <div>Last message:</div>
+             <div>{{$t("lastMsg")}}:</div>
              <c-message-card
                  class="last-msg pa-1"
                  :message = item.last_message
@@ -41,7 +46,7 @@
                  small
                  color="indigo"
                  @click="openChat(item.name)">
-               Enter
+               {{ $t('enter') }}
              </v-btn>
            </v-card-actions>
          </v-card>
@@ -52,7 +57,7 @@
      <v-row v-else>
        <v-col>
          <h3 class="d-flex justify-space-between align-center mt-5">
-           Rooms list empty
+           {{ $t('emptyList') }}
          </h3>
        </v-col>
      </v-row>
@@ -90,6 +95,7 @@ export default class RoomsList extends Vue {
   }
 
   async mounted() {
+    console.log("mounted in roomslist")
     await smartModule.actions.fetchRoomsList();
     await smartModule.actions.fetchSettings();
   }

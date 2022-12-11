@@ -31,7 +31,7 @@
               v-model="message"
               class="input pa-1"
               type="text"
-              placeholder="Type your message"
+              :placeholder='$t("typeYourMsg")'
           />
         </v-col>
         <v-col cols="2">
@@ -41,12 +41,15 @@
               color="indigo"
               @click="sendMessage(message)"
           >
-            Send
+            {{ $t('send') }}
           </v-btn>
         </v-col>
       </v-row>
 <!--      <div class="error&#45;&#45;text" v-if="!$v.message.maxLength">-->
-<!--        Сообщение должно быть меньше {{ validationRules.maxMessageLength  }} знаков-->
+<!--      {{ $t('errSizeMsg',{-->
+<!--      countSymbols: validationRules.maxMessageLength,-->
+<!--    }-->
+<!--        '}}-->
 <!--      </div>-->
     </v-container>
   </v-col>
@@ -100,8 +103,10 @@ export default class ChatComponent extends Vue {
       text: msg,
     };
 
+    console.log('message', message)
+
     if (msg !== "") {
-      Api.sendMessageToWebsocket(message);
+      await smartModule.actions.sendMsgToWS(message);
       this.message = ""; // есть ли сценарий обезопасить себя от удаления сообщения если в сокете будет ошибка?
       await smartModule.actions.fetchRoomsList();
     }

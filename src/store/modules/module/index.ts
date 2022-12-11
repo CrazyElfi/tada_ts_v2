@@ -8,7 +8,7 @@ class ModuleState {
     rooms: IRoom[] = [];
     roomHistory: IMessage[] = [];
     roomName: string = '';
-    username: string = "";
+    username: string = "Козьма Прутков";
     settings: IAppSettings = {
         maxMessageLength: 50,
         maxRoomTitleLength: 50,
@@ -95,7 +95,12 @@ class ModuleActions extends Actions<
     }
 
     connectWS() {
+        console.log('store connectWS')
         Api.connectWebsocket(this.state.username);
+    }
+
+    sendMsgToWS(message: IMessage) {
+        Api.sendMessageToWebsocket(message)
     }
 
     resetRoomHistoryAndName() {

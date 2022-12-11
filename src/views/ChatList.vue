@@ -14,6 +14,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import RoomsList from '@/components/RoomsList.vue';
 import ChatComponent from '@/components/ChatComponent.vue';
 import {smartModule} from "@/store";
+import Api from "@/api";
 
 @Component({
   components: {
@@ -27,6 +28,11 @@ export default class ChatList extends Vue {
 
   get isShowChat() {
     return !!smartModule.getters.nameRoom
+  }
+  mounted() {
+    console.log('mounted')
+
+    smartModule.actions.connectWS()
   }
 }
 </script>
