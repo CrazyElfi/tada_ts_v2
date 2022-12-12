@@ -95,7 +95,6 @@ class ModuleActions extends Actions<
     }
 
     connectWS() {
-        console.log('store connectWS')
         Api.connectWebsocket(this.state.username);
     }
 

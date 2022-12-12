@@ -1,5 +1,7 @@
 import axios from "axios";
 import {IMessage} from "@/types";
+import {smartModule} from "@/store";
+import i18n from "@/i18n";
 
 let ws: any = null;
 
@@ -20,44 +22,50 @@ export default {
     },
 
     connectWebsocket(userName: string) {
-        console.log('connectWebsocket!')
         ws = new WebSocket(`wss://nane.tada.team/ws?username=${userName}`);
         // ws.addEventListener('open', () => {
         //     console.log("connected to WS!");
         // });
 
-        ws.onopen = function(e: any) {
-            console.log("[open] Соединение установлено");
+        ws.onopen = async function (e: object) {
+            console.log(`${i18n.t('wsConnectOpen')}`);
+            await this.pingWS
         };
 
-        ws.onmessage = function(event: any) {
-            console.log(`[message] Данные получены с сервера: ${event.data}`);
+        ws.onmessage = async function (event: object) {
+            // console.log(`[message] Данные получены с сервера: ${event.data}`);
+            await smartModule.actions.fetchRoomsList();
         };
 
-        ws.onclose = function(event: any ) {
-            console.log()
+        ws.onclose = function(event: any) {
             if (event.wasClean) {
-                console.log(`[close] Соединение закрыто чисто, код=${event.code} причина=${event.reason}`);
+                console.log(`${i18n.t('wsConnectCloseWithReason', {
+                    code: event.code,
+                    reason: event.reason
+                })}`);
             } else {
-                console.log('[close] Соединение прервано');
+                console.log(`${i18n.t('wsConnectClose')}`);
             }
         };
 
         ws.onerror = function(error: any) {
-            console.log(`[error]`);
+            console.log(`${i18n.t('wsError')}`);
         };
     },
 
     pingWS() {
-        let ping = ws.send(JSON.stringify({"ping": true}));
-        console.log('1', ping)
-        // if() {
-        //
-        // }
+        ws.send(JSON.stringify({"ping": true}));
+
+        ws.onmessage = async function (event: any) {
+            if(event.data.pong !== true) {
+                console.log(`${i18n.t('wsReconnect')}`);
+
+                this.connectWebsocket(smartModule.state.username)
+            }
+        };
     },
 
     sendMessageToWebsocket(msg: IMessage) {
-        console.log('msg ws', msg)
         ws.send(JSON.stringify(msg));
     }
 }

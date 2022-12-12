@@ -1,28 +1,21 @@
 <template>
   <v-app>
-    <v-btn @click="ping()">
-      chek
-    </v-btn>
+<!--    <v-btn @click="ping()">-->
+<!--      chek-->
+<!--    </v-btn>-->
       <router-view/>
   </v-app>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import storeModule from "@/store/modules/module";
-import {smartModule} from "@/store";
 import Api from "@/api";
 
 export default class App extends Vue {
-  // get ping() {
-  // }
-
-
-
- ping() {
-   // console.log(12123123123)
-   Api.pingWS()
- }
+ // ping() {
+ //   // console.log(12123123123)
+ //   Api.pingWS()
+ // }
 }
 </script>
 

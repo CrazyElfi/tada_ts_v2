@@ -13,5 +13,10 @@
   "errSizeMsg": "Сообщение должно быть меньше {countSymbols} знаков",
   "newChat": "new chat",
   "errSizeRoomName": "Максимальный размер имени комнаты {countSymbols}",
-  "firstRoomMsg": "User \"{nameUser}\" created \"{nameRoom}\" room"
+  "firstRoomMsg": "User \"{nameUser}\" created \"{nameRoom}\" room",
+  "wsConnectOpen": "Соединение установлено",
+  "wsConnectClose": "Соединение прервано",
+  "wsConnectCloseWithReason": "Соединение закрыто чисто, код=\"{code}\" причина=\"{reason}\"",
+  "wsReconnect": "Соединение прервано, восстанавливаем соединение",
+  "wsError": "Ошибка WS"
 }

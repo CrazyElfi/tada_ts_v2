@@ -88,14 +88,12 @@ export default class RoomsList extends Vue {
   get username(): string {
     return smartModule.state.username;
   }
-
   set username(newName: string) {
-    smartModule.actions.fetchUserName(newName);
     smartModule.actions.resetRoomHistoryAndName();
+    smartModule.actions.fetchUserName(newName);
   }
 
   async mounted() {
-    console.log("mounted in roomslist")
     await smartModule.actions.fetchRoomsList();
     await smartModule.actions.fetchSettings();
   }

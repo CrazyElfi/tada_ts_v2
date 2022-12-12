@@ -30,8 +30,6 @@ export default class ChatList extends Vue {
     return !!smartModule.getters.nameRoom
   }
   mounted() {
-    console.log('mounted')
-
     smartModule.actions.connectWS()
   }
 }
