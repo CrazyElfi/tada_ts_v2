@@ -1,4 +1,3 @@
-# ts-playground
 
 ## Project setup
 ```
