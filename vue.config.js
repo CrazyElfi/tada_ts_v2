@@ -12,5 +12,9 @@ module.exports = defineConfig({
       enableInSFC: false,
       enableBridge: false
     }
-  }
+  },
+
+  publicPath: process.env.NODE_ENV === 'production'
+      ? '/tada_ts_v2/'
+      : '/'
 })
