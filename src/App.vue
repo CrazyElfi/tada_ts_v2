@@ -1,25 +1,42 @@
 <template>
   <v-app>
-<!--    <v-btn @click="ping()">-->
-<!--      chek-->
-<!--    </v-btn>-->
+    <nav class="pa-3 blue-grey">
+      <v-row>
+        <v-col cols="5" class="d-flex justify-space-between">
+          <v-btn>
+            <router-link class="menu-item" to="/">
+              {{ $t('formPage') }}
+            </router-link>
+          </v-btn>
+          <v-btn>
+            <router-link class="menu-item"  to="/chats">
+              {{ $t('chatsList') }}
+            </router-link>
+          </v-btn>
+          <v-btn>
+            <router-link class="menu-item"  to="/newChat">
+              {{ $t('createNewChat') }}
+            </router-link>
+          </v-btn>
+        </v-col>
+
+      </v-row>
+    </nav>
       <router-view/>
   </v-app>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import Api from "@/api";
 
-export default class App extends Vue {
- // ping() {
- //   // console.log(12123123123)
- //   Api.pingWS()
- // }
-}
+export default class App extends Vue {}
 </script>
 
 <style lang="scss">
+.menu-item {
+  text-decoration: none;
+  padding: 0 15px;
+}
 .user-name {
   color: #00008b;
 }

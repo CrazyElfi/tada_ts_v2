@@ -22,7 +22,7 @@ export default {
     },
 
     connectWebsocket(userName: string) {
-        ws = new WebSocket(`wss://nane.tada.team/ws?username=${userName}`);
+        ws = new WebSocket(`wss://nane.tada.team/ws?username=${encodeURIComponent(userName)}`);
         // ws.addEventListener('open', () => {
         //     console.log("connected to WS!");
         // });
@@ -54,6 +54,7 @@ export default {
     },
 
     pingWS() {
+        if (!this.isOpen(ws)) return
         ws.send(JSON.stringify({"ping": true}));
 
         ws.onmessage = async function (event: any) {
@@ -66,6 +67,9 @@ export default {
     },
 
     sendMessageToWebsocket(msg: IMessage) {
+        if (!this.isOpen(ws)) return
         ws.send(JSON.stringify(msg));
-    }
+    },
+
+    isOpen(ws: any) { return ws.readyState === ws.OPEN },
 }

@@ -38,8 +38,6 @@ export default class ChatList extends Vue {
 <style lang="scss">
 .app-wrapper {
   font-family: "Open Sans", sans-serif;
-
-  //font-size: 16px;
 }
 
 </style>

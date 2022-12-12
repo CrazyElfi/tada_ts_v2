@@ -18,5 +18,8 @@
   "wsConnectClose": "Соединение прервано",
   "wsConnectCloseWithReason": "Соединение закрыто чисто, код=\"{code}\" причина=\"{reason}\"",
   "wsReconnect": "Соединение прервано, восстанавливаем соединение",
-  "wsError": "Ошибка WS"
+  "wsError": "Ошибка WS",
+  "chatsList": "Cписок чатов",
+  "formPage": "Форма ввода имени",
+  "createNewChat": "Создать новый чат"
 }

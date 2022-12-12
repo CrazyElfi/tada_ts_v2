@@ -7,26 +7,27 @@
        {{$t('yourName')}}
      </v-col>
      <v-col cols="8">
-       <!--      v-model="$v.username.$model"-->
        <input
            v-model="username"
            class="input pa-1"
            type="text"
            :placeholder='$t("typeYourName")'
        />
-       <!--      <div class="error&#45;&#45;text" v-if="!$v.username.maxLength">-->
-      <!--       {{ $t('errSizeName',{
-                      countSymbols: validationRules.maxUsernameLength,
-                    }
-      '}}-->
-       <!--      </div>-->
+       <div
+           v-if="username.length > validationRules.maxUsernameLength"
+           class="error--text"
+       >
+         {{ $t('errSizeName',{
+         countSymbols: validationRules.maxUsernameLength,
+       })
+         }}
+       </div>
      </v-col>
    </v-row>
 
-     <v-row v-if="roomsList" class="rooms-list" dense>
-       <v-col v-for="(item, index) in roomsList" :key="index" cols="12">
-         <!--      <room-card :room="item" @open="openChat(item.name)"/>-->
-         <v-card>
+     <div v-if="roomsList" class="rooms-list pa-1" dense>
+       <div v-for="(item, index) in roomsList" :key="index">
+         <v-card class="mb-2">
            <v-card-title class="subtitle-1">
              {{$t("room")}}: {{ item.name }}
            </v-card-title>
@@ -50,9 +51,9 @@
              </v-btn>
            </v-card-actions>
          </v-card>
-       </v-col>
+       </div>
 
-     </v-row>
+     </div>
 
      <v-row v-else>
        <v-col>
@@ -93,6 +94,10 @@ export default class RoomsList extends Vue {
     smartModule.actions.fetchUserName(newName);
   }
 
+  get validationRules() {
+    return smartModule.state.settings;
+  }
+
   async mounted() {
     await smartModule.actions.fetchRoomsList();
     await smartModule.actions.fetchSettings();
@@ -108,7 +113,8 @@ export default class RoomsList extends Vue {
 
 <style lang="scss" scoped>
 .rooms-list {
-  //overflow-y: auto;
+  height: calc(90vh - 100px);
+  overflow-y: auto;
 }
 
 .last-msg {

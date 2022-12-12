@@ -17,19 +17,21 @@
       <v-spacer />
 
       <v-col cols="6">
-        <!--            v-model="$v.newRoomName.$model"-->
         <input
             v-model="newRoomName"
             class="input pa-1"
             type="text"
             :placeholder='$t("typeRoomName")'
         />
-<!--        <div class="error&#45;&#45;text" v-if="!$v.newRoomName.maxLength">-->
-        <!--      {{ $t('errSizeRoomName',{-->
-        <!--      countSymbols: validationRules.maxRoomTitleLength,-->
-        <!--    }-->
-        <!--        '}}-->
-<!--        </div>-->
+        <div
+            v-if="newRoomName.length > validationRules.maxRoomTitleLength"
+            class="error--text"
+        >
+              {{ $t('errSizeRoomName',{
+              countSymbols: validationRules.maxRoomTitleLength,
+            })
+                }}
+        </div>
       </v-col>
     </v-row>
 
@@ -50,6 +52,10 @@ export default class AddNewChat extends Vue {
 
   get username()  {
     return smartModule.getters.username;
+  }
+
+  get validationRules() {
+    return smartModule.state.settings;
   }
 
   async createNewRoom() {

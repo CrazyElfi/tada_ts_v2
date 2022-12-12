@@ -26,7 +26,6 @@
 
       <v-row class="d-flex align-center mt-3">
         <v-col cols="10">
-          <!--              v-model="$v.message.$model"-->
           <input
               v-model="message"
               class="input pa-1"
@@ -45,12 +44,12 @@
           </v-btn>
         </v-col>
       </v-row>
-<!--      <div class="error&#45;&#45;text" v-if="!$v.message.maxLength">-->
-<!--      {{ $t('errSizeMsg',{-->
-<!--      countSymbols: validationRules.maxMessageLength,-->
-<!--    }-->
-<!--        '}}-->
-<!--      </div>-->
+      <div class="error--text" v-if="message.length > validationRules.maxMessageLength">
+      {{ $t('errSizeMsg',{
+      countSymbols: validationRules.maxMessageLength,
+    })
+        }}
+      </div>
     </v-container>
   </v-col>
 </template>
@@ -83,9 +82,9 @@ export default class ChatComponent extends Vue {
     return smartModule.getters.username;
   }
 
-  // validationRules() {
-  //   return this.$store.state?.settings;
-  // }
+  validationRules() {
+    return smartModule.state.settings;
+  }
 
   async mounted() {
     await smartModule.actions.fetchRoomHistory();
