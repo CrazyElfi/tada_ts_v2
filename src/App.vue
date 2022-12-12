@@ -2,18 +2,18 @@
   <v-app>
     <nav class="pa-3 blue-grey">
       <v-row>
-        <v-col cols="5" class="d-flex justify-space-between">
-          <v-btn>
+        <v-col cols="5" class="d-flex justify-start">
+          <v-btn class="mr-1">
             <router-link class="menu-item" to="/">
               {{ $t('formPage') }}
             </router-link>
           </v-btn>
-          <v-btn>
+          <v-btn class="mr-1">
             <router-link class="menu-item"  to="/chats">
               {{ $t('chatsList') }}
             </router-link>
           </v-btn>
-          <v-btn>
+          <v-btn class="mr-1">
             <router-link class="menu-item"  to="/newChat">
               {{ $t('createNewChat') }}
             </router-link>
@@ -35,7 +35,6 @@ export default class App extends Vue {}
 <style lang="scss">
 .menu-item {
   text-decoration: none;
-  padding: 0 15px;
 }
 .user-name {
   color: #00008b;
