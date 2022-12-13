@@ -36,11 +36,11 @@ class ModuleGetters extends Getters<ModuleState> {
 }
 
 class ModuleMutations extends Mutations<ModuleState> {
-    updateRoomsList(rooms: any) {
+    updateRoomsList(rooms: IRoom[]) {
         this.state.rooms = rooms;
     }
 
-    updateRoomHistory(history: any) {
+    updateRoomHistory(history: IMessage[]) {
         this.state.roomHistory = history;
     }
 
@@ -52,7 +52,7 @@ class ModuleMutations extends Mutations<ModuleState> {
         this.state.username = name;
     }
 
-    updateSettings(settings: any) {
+    updateSettings(settings: IAppSettings) {
         this.state.settings = settings;
     }
 }
